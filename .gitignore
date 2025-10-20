@@ -1,0 +1,20 @@
+**/target/
+.idea
+*.iml
+*.class
+application-dev.yml
+*.env
+
+# Logs
+*.log
+logs/
+nginx-*/logs/
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+
+# Build files
+build/
+dist/

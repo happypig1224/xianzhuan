@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xianzhuan.mapper.ItemMapper">
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into used_item (name, category_id, original_price, current_price, shipping_fee, `condition`, seller_id, views, image, description, create_time, update_time, create_user, update_user, status)
+        values (#{name}, #{categoryId}, #{originalPrice}, #{currentPrice}, #{shippingFee}, #{condition}, #{sellerId}, #{views}, #{image}, #{description}, #{createTime}, #{updateTime}, #{createUser}, #{updateUser}, #{status})
+    </insert>
+    <update id="updateItem">
+        update used_item
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="categoryId != null">category_id = #{categoryId},</if>
+            <if test="originalPrice != null">original_price = #{originalPrice},</if>
+            <if test="currentPrice != null">current_price = #{currentPrice},</if>
+            <if test="shippingFee != null">shipping_fee = #{shippingFee},</if>
+            <if test="condition != null">`condition` = #{condition},</if>
+            <if test="sellerId != null">seller_id = #{sellerId},</if>
+            <if test="views != null">views = #{views},</if>
+            <if test="image != null">image = #{image},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateUser != null">update_user = #{updateUser},</if>
+        </set>
+        where id = #{id}
+    </update>
+    <select id="queryPage" resultType="com.xianzhuan.vo.UsedItemVO">
+        select d.* , c.name as categoryName from used_item d left outer join
+            category c on d.category_id = c.id
+        <where>
+            <if test="name != null">
+                and d.name like concat('%',#{name},'%')
+            </if>
+            <if test="categoryId != null">
+                and d.category_id = #{categoryId}
+            </if>
+            <if test="status != null">
+                and d.status = #{status}
+            </if>
+        </where>
+        order by d.create_time desc
+    </select>
+    <select id="list" resultType="com.xianzhuan.entity.UsedItem">
+        select * from used_item
+        <where>
+            <if test="name != null">
+                and name like concat('%',#{name},'%')
+            </if>
+            <if test="categoryId != null">
+                and category_id = #{categoryId}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+        </where>
+        order by update_time desc
+    </select>
+    <select id="countByMap" resultType="java.lang.Integer">
+        select count(id) from used_item
+        <where>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="categoryId != null">
+                and category_id = #{categoryId}
+            </if>
+        </where>
+    </select>
+</mapper>

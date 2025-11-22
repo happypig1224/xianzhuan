@@ -1,0 +1,1 @@
+import{s as e}from"./index-B7SppTyz.js";var t=t=>e.get(`/admin/category/page`,{params:t}),n=t=>e.post(`/admin/category`,t),r=t=>e.put(`/admin/category`,t),i=t=>e.delete(`/admin/category`,{params:{id:t}}),a=(t,n)=>e.post(`/admin/category/status/${n}`,null,{params:{id:t}}),o=t=>e.get(`/admin/category/list`,{params:t});export{r as a,t as i,i as n,a as o,o as r,n as t};

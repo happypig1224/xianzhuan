@@ -1,0 +1,4 @@
+<view class="ai-fab" bindtap="onTap">
+  <text class="fab-icon">AI</text>
+  <text class="fab-text">AI</text>
+</view>

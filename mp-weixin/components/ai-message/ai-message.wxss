@@ -1,0 +1,89 @@
+.ai-message {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 24rpx;
+  padding: 0 24rpx;
+}
+
+.message-left {
+  flex-direction: row;
+}
+
+.message-right {
+  flex-direction: row-reverse;
+}
+
+.avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.avatar-ai {
+  background: linear-gradient(135deg, #FF6B35, #FFB347);
+  margin-right: 16rpx;
+}
+
+.avatar-user {
+  background: #FF6B35;
+  margin-left: 16rpx;
+}
+
+.avatar-text {
+  color: #FFFFFF;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.bubble {
+  max-width: 70%;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+.bubble-assistant {
+  background: #FFFFFF;
+  color: #2D2D2D;
+  border-radius: 4rpx 16rpx 16rpx 16rpx;
+  box-shadow: 0 2rpx 8rpx 0 rgba(255,107,53,0.06);
+  position: relative;
+}
+
+.bubble-assistant::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8rpx;
+  bottom: 8rpx;
+  width: 4rpx;
+  background: linear-gradient(180deg, #FF6B35, #FFB347);
+  border-radius: 2rpx;
+}
+
+.bubble-user {
+  background: #FF6B35;
+  color: #FFFFFF;
+  border-radius: 16rpx 4rpx 16rpx 16rpx;
+}
+
+.bubble-content {
+  font-family: PingFangSC, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.streaming-cursor {
+  color: #FF6B35;
+  font-weight: 600;
+  animation: blink 0.8s infinite;
+  margin-left: 4rpx;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

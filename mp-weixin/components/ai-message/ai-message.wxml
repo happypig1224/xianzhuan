@@ -1,0 +1,18 @@
+<view class="ai-message {{role === 'user' ? 'message-right' : 'message-left'}}">
+  <block wx:if="{{role === 'assistant'}}">
+    <view class="avatar avatar-ai">
+      <text class="avatar-text">AI</text>
+    </view>
+  </block>
+  <view class="bubble {{role === 'user' ? 'bubble-user' : 'bubble-assistant'}}">
+    <text class="bubble-content">{{content}}</text>
+    <block wx:if="{{isStreaming}}">
+      <text class="streaming-cursor">|</text>
+    </block>
+  </view>
+  <block wx:if="{{role === 'user'}}">
+    <view class="avatar avatar-user">
+      <text class="avatar-text">我</text>
+    </view>
+  </block>
+</view>

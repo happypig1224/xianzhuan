@@ -1,0 +1,8 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "AI助手",
+  "usingComponents": {
+    "ai-message": "/components/ai-message/ai-message",
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar"
+  }
+}

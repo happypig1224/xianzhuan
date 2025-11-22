@@ -1,0 +1,25 @@
+<view class="ai-sessions-page">
+  <uni-nav-bar title="历史会话" background-color="#FF6B35" color="#fff" status-bar="true" fixed="true" left-icon="back" bind:leftIconTap="onBack"></uni-nav-bar>
+
+  <scroll-view class="session-list" scroll-y="true">
+    <block wx:if="{{sessions.length === 0 && !loading}}">
+      <empty textLabel="暂无历史会话"></empty>
+    </block>
+    <block wx:for="{{sessions}}" wx:key="sessionId">
+      <view class="session-card" bindtap="onSessionTap" data-session-id="{{item.sessionId}}" bindlongpress="onSessionLongPress" data-session-id="{{item.sessionId}}" data-index="{{index}}">
+        <view class="session-info">
+          <view class="session-title">AI对话</view>
+          <view class="session-last-msg">{{item.lastMessage || '暂无消息'}}</view>
+        </view>
+        <view class="session-meta">
+          <text class="session-time">{{item.lastActiveTime}}</text>
+          <text class="session-count">{{item.messageCount}}条消息</text>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <view class="new-session-btn" bindtap="onNewSession">
+    <text class="new-session-text">+ 新建对话</text>
+  </view>
+</view>

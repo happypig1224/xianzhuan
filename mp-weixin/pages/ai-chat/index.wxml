@@ -1,0 +1,36 @@
+<view class="ai-chat-page">
+  <uni-nav-bar title="AI助手" background-color="#FF6B35" color="#fff" status-bar="true" fixed="true"></uni-nav-bar>
+
+  <scroll-view class="message-list" scroll-y="true" scroll-into-view="{{scrollTarget}}" scroll-with-animation="true">
+    <block wx:if="{{messages.length === 0}}">
+      <view class="welcome-area">
+        <view class="welcome-icon">🤖</view>
+        <view class="welcome-title">你好，我是闲转AI助手</view>
+        <view class="welcome-desc">我可以帮你估价二手物品、推荐好物、查看订单</view>
+        <view class="quick-actions">
+          <view class="quick-btn" bindtap="onQuickAction" data-action="推荐今日热门菜品">🔥 推荐热门</view>
+          <view class="quick-btn" bindtap="onQuickAction" data-action="有什么套餐推荐吗？">📦 套餐推荐</view>
+          <view class="quick-btn" bindtap="onQuickAction" data-action="看看我的购物车">🛒 查看购物车</view>
+        </view>
+      </view>
+    </block>
+    <block wx:for="{{messages}}" wx:key="index">
+      <view id="msg-{{index}}">
+        <ai-message role="{{item.role}}" content="{{item.content}}" isStreaming="{{item.isStreaming}}"></ai-message>
+      </view>
+    </block>
+    <block wx:if="{{isAiTyping}}">
+      <view class="typing-indicator">
+        <text class="typing-dots">AI正在思考</text>
+      </view>
+    </block>
+    <view id="scroll-bottom" style="height: 1rpx;"></view>
+  </scroll-view>
+
+  <view class="input-area">
+    <input class="chat-input" placeholder="输入你想吃的或问的问题..." value="{{inputText}}" bindinput="onInputChange" bindconfirm="onSend" confirm-type="send" disabled="{{isAiTyping}}" />
+    <view class="send-btn {{inputText.trim() ? 'send-btn-active' : ''}}" bindtap="onSend">
+      <text class="send-text">发送</text>
+    </view>
+  </view>
+</view>
